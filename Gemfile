@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# rubygems.org through nora (3-day hold on new versions, issues-maestra#1649); credentials: export BUNDLE_PACKAGES__MAESTRA__IO="token:<nra_ token>"
+source 'https://packages.maestra.io/gems/'
 
 # You may use http://rbenv.org/ or https://rvm.io/ to install and use this version
 ruby ">= 3.1.0"
