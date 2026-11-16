@@ -1,0 +1,21 @@
+# Daily security scan of the default branch (gitleaks, trivy, opengrep) through the reusable
+# workflow of maestra-io/github-actions. A finding turns the run red; accepted findings:
+# .gitleaksignore / gitleaks:allow, .trivyignore, nosemgrep. issues-maestra#1649
+name: security-scan
+
+on:
+  schedule:
+    - cron: "16 23 * * *"
+  workflow_dispatch:
+  # A change to this file runs the scan on its own PR.
+  pull_request:
+    paths:
+      - .github/workflows/security-scan.yml
+
+permissions:
+  contents: read
+  id-token: write # nora OIDC token for the scanner downloads
+
+jobs:
+  scan:
+    uses: maestra-io/github-actions/.github/workflows/security-scan.yml@main
