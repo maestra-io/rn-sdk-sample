@@ -12,4 +12,5 @@ permissions:
 jobs:
   gitleaks:
     uses: maestra-io/github-actions/.github/workflows/gitleaks.yml@main
-    secrets: inherit
+    secrets:
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
