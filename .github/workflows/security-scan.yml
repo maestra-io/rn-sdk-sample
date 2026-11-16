@@ -5,7 +5,7 @@ name: security-scan
 
 on:
   schedule:
-    - cron: "16 23 * * *"
+    - cron: "7 21 * * *" # slot from a hash of the repo name, 20:00-04:00 UTC
   workflow_dispatch:
   # A change to this file runs the scan on its own PR.
   pull_request:
