@@ -1,16 +1,12 @@
-# Daily security scan of the default branch (gitleaks, trivy, opengrep) through the reusable
-# workflow of maestra-io/github-actions. A finding turns the run red; accepted findings:
-# .gitleaksignore / gitleaks:allow, .trivyignore, nosemgrep. issues-maestra#1649
+# Security scan (gitleaks, trivy, opengrep) through the reusable workflow of
+# maestra-io/github-actions. PR only, by Igor's decision 17.11.2026 (issues-maestra#1649): a PR
+# fails only on findings it introduces; no schedule. workflow_dispatch runs the full scan by hand.
+# Accepted findings: .gitleaksignore / gitleaks:allow, .trivyignore, nosemgrep.
 name: security-scan
 
 on:
-  schedule:
-    - cron: "7 21 * * *" # slot from a hash of the repo name, 20:00-04:00 UTC
-  workflow_dispatch:
-  # A change to this file runs the scan on its own PR.
   pull_request:
-    paths:
-      - .github/workflows/security-scan.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
